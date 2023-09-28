@@ -1,0 +1,15 @@
+.rolecard {
+  transition: transform 0.3s ease;
+}
+.rolecard:hover {
+  transform: translate(0, -10px);
+  cursor: pointer;
+}
+
+.admin-action {
+  text-align: center;
+}
+.admin-action button {
+  height: 40px;
+  padding: 0 10px;
+}
