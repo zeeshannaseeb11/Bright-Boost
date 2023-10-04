@@ -1,91 +1,67 @@
-import { useEffect, useRef, useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Input, Tag } from "antd";
+import { useState, createContext } from "react";
 
-const ExpertiesTag = ({ expertiesArea, setExpertiesAreas }) => {
-  const [inputVisible, setInputVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const inputRef = useRef(null);
-  useEffect(() => {
-    if (inputVisible) {
-      inputRef.current?.focus();
-    }
-  }, [inputVisible]);
-  const handleClose = (removedTag) => {
-    const newTags = expertiesArea.filter((tag) => tag !== removedTag);
-    console.log(newTags);
-    setExpertiesAreas(newTags);
+export const AuthContext = createContext({
+  token: "",
+  role: "",
+  firstName: "",
+  lastName: "",
+  login: () => {},
+  logout: () => {},
+});
+
+const AuthContextProvider = ({ children }) => {
+  const storedToken = localStorage.getItem("token");
+  const storedRole = localStorage.getItem("role");
+  const storedFirstName = localStorage.getItem("firstname");
+  const storedLastName = localStorage.getItem("lastname");
+  const [token, setToken] = useState(storedToken || "");
+  const [role, setRole] = useState(storedRole || "");
+  const [firstName, setFirstName] = useState(storedFirstName || "");
+  const [lastName, setLastName] = useState(storedLastName || "");
+  const [activeSessionId, setActiveSessionId] = useState("");
+  const login = (data) => {
+    setToken(data.id.toString());
+    setFirstName(data.firstname);
+    setLastName(data.lastname);
+    localStorage.setItem("token", data.id.toString());
+    localStorage.setItem("firstname", data.firstname);
+    localStorage.setItem("lastname", data.lastname);
   };
-  const showInput = () => {
-    setInputVisible(true);
+
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("firstname");
+    localStorage.removeItem("lastname");
+    setRole("");
   };
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
+
+  const specifyRole = (value) => {
+    setRole(value);
+    localStorage.setItem("role", value);
   };
-  const handleInputConfirm = () => {
-    if (inputValue && expertiesArea.indexOf(inputValue) === -1) {
-      setExpertiesAreas([...expertiesArea, inputValue]);
-    }
-    setInputVisible(false);
-    setInputValue("");
+  const removeRole = () => {
+    setRole("");
+    localStorage.removeItem("role");
   };
-  const forMap = (tag) => {
-    const tagElem = (
-      <Tag
-        closable
-        onClose={(e) => {
-          e.preventDefault();
-          handleClose(tag);
-        }}
-      >
-        {tag}
-      </Tag>
-    );
-    return (
-      <span
-        key={tag}
-        style={{
-          display: "inline-block",
-        }}
-      >
-        {tagElem}
-      </span>
-    );
+  const activeSession = (id) => {
+    setActiveSessionId(id);
   };
-  const tagChild = expertiesArea.map(forMap);
-  const tagPlusStyle = {
-    borderStyle: "dashed",
-    padding: "10px",
+
+  const value = {
+    token,
+    role,
+    firstName,
+    lastName,
+    activeSessionId,
+    login,
+    logout,
+    specifyRole,
+    removeRole,
+    activeSession,
   };
-  return (
-    <>
-      <div
-        style={{
-          marginBottom: 8,
-        }}
-      >
-        {tagChild}
-      </div>
-      {inputVisible ? (
-        <Input
-          ref={inputRef}
-          type="text"
-          size="small"
-          style={{
-            padding: "10px",
-            borderRadius: "3px",
-          }}
-          value={inputValue}
-          onChange={handleInputChange}
-          onBlur={handleInputConfirm}
-          onPressEnter={handleInputConfirm}
-        />
-      ) : (
-        <Tag onClick={showInput} style={tagPlusStyle}>
-          <PlusOutlined /> Experties Area
-        </Tag>
-      )}
-    </>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-export default ExpertiesTag;
+
+export default AuthContextProvider;
