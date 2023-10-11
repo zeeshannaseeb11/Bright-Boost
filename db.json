@@ -58,6 +58,13 @@
       "email": "test1@gmail.com",
       "password": "test12345",
       "id": 8
+    },
+    {
+      "firstname": "nijam",
+      "lastname": "shrestha",
+      "email": "tester1@gmail.com",
+      "password": "test12345",
+      "id": 9
     }
   ],
   "tutors": [
@@ -111,6 +118,14 @@
       "password": "12345678",
       "expertiesArea": [],
       "id": 5
+    },
+    {
+      "firstname": "tester2",
+      "lastname": "tester2",
+      "email": "test2@gmail.com",
+      "password": "test2345",
+      "expertiesArea": [],
+      "id": 6
     }
   ],
   "admin": [
