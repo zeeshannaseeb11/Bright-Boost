@@ -244,6 +244,17 @@
       "questionsAnswered": 0,
       "tutorsJoind": [],
       "id": 17
+    },
+    {
+      "date": "2023-10-18",
+      "studentsAttended": 1,
+      "questionsAnswered": 1,
+      "tutorsJoind": [
+        {
+          "tutorID": 2
+        }
+      ],
+      "id": 18
     }
   ],
   "categories": [
@@ -590,12 +601,44 @@
               "reply": "zeeshan naseeb",
               "repliedAt": "2023-09-21T06:11:08.496Z",
               "content": "Yeah I understand it little bit and i'll continue develping it near futture."
+            },
+            {
+              "reply": "zeeshan naseeb",
+              "repliedAt": "2023-10-18T20:36:00.373Z",
+              "content": "I'll get this later"
             }
           ]
         }
       ],
       "categoryId": "6",
       "id": 17
+    },
+    {
+      "title": "LLB",
+      "questions": [
+        {
+          "id": "0.5817866507949665",
+          "title": "@What is LLB?",
+          "askedby": "zeeshan naseeb",
+          "askedat": "2023-10-18T20:53:25.794Z",
+          "answeredBy": null,
+          "assigned": {
+            "tutor": "raja shajjar",
+            "assignedAt": "2023-10-18T20:57:08.600Z",
+            "completed": false,
+            "completedAt": ""
+          },
+          "discussion": [
+            {
+              "reply": "raja shajjar",
+              "repliedAt": "2023-10-18T20:57:30.897Z",
+              "content": "I'll tell yiou this later"
+            }
+          ]
+        }
+      ],
+      "categoryId": "3",
+      "id": 18
     }
   ]
 }

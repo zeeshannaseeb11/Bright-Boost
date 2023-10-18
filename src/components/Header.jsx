@@ -2,7 +2,7 @@ import { useContext } from "react";
 import "./Header.css";
 import { Avatar, Dropdown } from "antd";
 import logo from "../assets/brightbosstlogo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { AuthContext } from "../context/auth-context";
 //react icons
@@ -14,15 +14,26 @@ import { CiLogout } from "react-icons/ci";
 const Header = () => {
   const { token, logout, role } = useContext(AuthContext);
 
+  const { pathname } = useLocation();
+
   const USERITEMS = [
     {
       key: "1",
-      label: <Link to="/admin">Settings</Link>,
+      label: <Link to="/admin">Admin</Link>,
       icon: <GrUserAdmin />,
     },
     {
       key: "2",
-      label: <button onClick={() => logout()}>Logout</button>,
+      label: (
+        <button
+          onClick={() => {
+            logout();
+            console.log("Clicked on logout!!");
+          }}
+        >
+          Logout
+        </button>
+      ),
       icon: <CiLogout />,
     },
   ];
@@ -34,11 +45,11 @@ const Header = () => {
     },
     {
       key: "2",
-      label: <a href="#">Why Choose us</a>,
+      label: <a href="#why-us">Why Choose us</a>,
     },
     {
       key: "3",
-      label: <a href="#">Comments From Students</a>,
+      label: <a href="#students-comment">Comments From Students</a>,
     },
   ];
   return (
@@ -52,33 +63,40 @@ const Header = () => {
         {token && (
           <nav>
             <ul className="header-nav">
-              <li>
-                <a href="#">Home</a>
-              </li>
-              <li>
-                <Dropdown
-                  menu={{
-                    items: INTROITEMS,
-                  }}
-                  trigger={["hover"]}
-                >
-                  <a>
-                    Introduction
-                    <AiOutlineDown />
-                  </a>
-                </Dropdown>
-              </li>
+              {pathname !== "/admin" && pathname !== "/discussion-fourm" && (
+                <>
+                  <li>
+                    <a href="#">Home</a>
+                  </li>
+                  <li>
+                    <Dropdown
+                      menu={{
+                        items: INTROITEMS,
+                      }}
+                      trigger={["hover"]}
+                    >
+                      <a>
+                        Introduction
+                        <AiOutlineDown />
+                      </a>
+                    </Dropdown>
+                  </li>
 
-              <li>
-                <a href="#">Categories</a>
-              </li>
-              <li>
-                <a href="#">Study Resources</a>
-              </li>
+                  <li>
+                    <a href="#categories">Categories</a>
+                  </li>
+                  <li>
+                    <a href="#resources">Study Resources</a>
+                  </li>
+                </>
+              )}
 
               <Dropdown
                 menu={{
-                  items: USERITEMS,
+                  items:
+                    role === "admin"
+                      ? USERITEMS
+                      : USERITEMS.filter((item) => item.key !== "1"),
                 }}
                 trigger={["click"]}
                 className="user-profile"

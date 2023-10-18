@@ -15,7 +15,6 @@
 }
 .stats-content {
   padding: 5px;
-
 }
 .tutor-stats {
   height: 260px;
@@ -30,9 +29,6 @@
   background-color: var(--light-bg-yellow);
   padding: 10px;
   height: 130px;
-}
-.count-stats::-webkit-scrollbar {
-  display: none;
 }
 .count-stats span {
   font-weight: 400;
