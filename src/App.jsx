@@ -4,12 +4,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthContext } from "./context/auth-context";
 import axios from "axios";
 import RootLayout from "./RootLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 import Authentication from "./pages/Authentication";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./pages/Home";
 import DiscussionForum from "./pages/DiscussionForum";
+import StudyResources from './pages/StudyResources';  
 
 import { ConfigProvider } from "antd";
 import ProtectRoutes from "./ProtectRoutes";
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    errorElement: <p>Page not found!!</p>,
+    errorElement: <NotFoundPage />, 
     children: [
       {
         path: "/",
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
         element: (
           <ProtectRoutes>
             <Home />
+          </ProtectRoutes>
+        ),
+      },
+    
+       
+      {
+        path: "study-resources",
+        element: (
+          <ProtectRoutes>
+            <StudyResources />
           </ProtectRoutes>
         ),
       },

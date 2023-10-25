@@ -22,7 +22,13 @@ const SESSIONSAPIURL = "http://localhost:3000/session";
 const CATEGORIESAPIURL = "http://localhost:3000/categories";
 
 const Home = () => {
+  const [showWelcome, setShowWelcome] = useState(true)
   const [categories, setCategories] = useState([]);
+  
+  const goToHomePage = () => {
+  setShowWelcome(false);
+  };
+
 
   useEffect(() => {
     const getAllCategories = async () => {
@@ -37,6 +43,61 @@ const Home = () => {
     // checkSession();
     getAllCategories();
   }, []);
+//  welcome page 
+if (showWelcome) {
+    return (
+      <div style={{ position: 'relative', top: 0, left: 0, width: '100%', height: "100vh", zIndex: 9999 }}>
+        <video
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            minWidth: '100%',
+            minHeight: '100%',
+            width: 'auto',
+            height: 'auto',
+            zIndex: -1000
+          }}
+          autoPlay
+          loop
+          muted
+        >
+          <source src="/welcomepagedisplay.mp4" type="video/mp4" />
+        </video>
+
+        <div style={{ 
+  zIndex: 1, 
+  display: 'flex', 
+  flexDirection: 'column', 
+  alignItems: 'flex-start',
+
+}} className="common"> 
+
+
+  <div className="header">  
+    <h1>Bright Boost</h1>
+  </div>
+
+
+  <div className="body-text"> 
+    <p>Never Stop Learning </p>
+    <p>Presented by G43 Group</p>
+  </div>
+
+
+  <div className="footer">  
+    <p>Technology Inquiry Project</p>
+  </div>
+
+  <button className="button" onClick={goToHomePage}>  
+  Begin your learning journey.
+  </button>
+
+
+</div>
+      </div>
+    );
+  }
 
   return (
     <>

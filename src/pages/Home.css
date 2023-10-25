@@ -190,3 +190,71 @@ footer {
 .attribution p {
   font-size: 15px;
 }
+
+/* welcomepage */
+.common {
+  text-align: 'left'; 
+  left:50%;
+}
+
+.header {
+  font-family: 'Josefin Sans', sans-serif;
+  color: rgb(188, 87, 31);
+  height: 270px;
+  font-size: 60px;
+  text-shadow: 2px 2px 3px orange; 
+
+}
+
+.body-text {
+  font-size: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: black;
+  top: 200px;
+  height: 300px;
+  text-align: left;
+  text-shadow: 2px 2px 3px orange; 
+
+}
+
+
+.footer {
+  font-family: 'Josefin Sans', sans-serif;
+  height: 150px;
+  text-shadow: 2px 2px 3px black; 
+  font-size: 30px;
+}
+
+
+
+
+.button {
+  font-family: 'Josefin Sans', sans-serif;
+  height: 40px;
+  background-color: transparent; 
+  border: 2px solid #ffffff; 
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  padding: 10px 24px;
+  font-size: 20px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+}
+
+.button:hover {
+  background-color: #000000;  
+  color: #ffffff;  
+  border-color: transparent;
+}
+
+.header,
+.body-text,
+.footer,
+.button {
+  margin-left: 100px;
+  margin-top: 10px;
+}
